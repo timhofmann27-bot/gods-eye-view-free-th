@@ -197,6 +197,47 @@
     overflow-y: auto;
   }
 
+  #right-context-rail > #pp-toggles:not(.collapsed) {
+    max-height: 100%;
+    padding-top: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #right-context-rail > #pp-toggles:not(.collapsed) > .pp-header-row {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    align-self: stretch;
+    width: auto;
+    min-height: 44px;
+    margin-right: -8px;
+    margin-left: -8px;
+    padding: 0 8px 0 12px;
+    background: rgba(9, 18, 27, 0.98);
+    border-bottom: 1px solid var(--glass-border);
+    border-radius: var(--panel-radius) var(--panel-radius) 0 0;
+  }
+
+  #right-context-rail > #pp-toggles:not(.collapsed) > .pp-header-row::after {
+    position: absolute;
+    top: 0;
+    right: -16px;
+    bottom: 0;
+    width: 16px;
+    background: rgba(9, 18, 27, 0.98);
+    content: '';
+    pointer-events: none;
+  }
+
+  #right-context-rail #pp-toggles .pp-collapse-btn {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    font-size: 16px;
+  }
+
   /* Both stacks are scroll containers at this width (overflow-y above), which
      also makes their overflow-x compute to auto. Each panel's decorative
      .panel-glow is absolutely positioned with a negative inset (-18px/-20px),
@@ -254,6 +295,20 @@
   }
 }
 
+@media (min-width: 560px) and (max-width: 720px) and (max-height: 500px) and (orientation: landscape) {
+  #left-panel-stack {
+    top: 112px;
+    right: calc(50vw + 8px);
+    bottom: calc(2vh + 7.5rem);
+  }
+
+  #right-context-rail {
+    top: 112px;
+    bottom: calc(2vh + 7.5rem);
+    left: calc(50vw + 8px);
+  }
+}
+
 @media (max-width: 520px) {
   /* 16px keeps the Radio broadcast waves (15px above the logo) on-screen. */
   #title-bar {
@@ -264,5 +319,51 @@
   #title-bar h1 > span:last-child,
   #title-bar .subtitle {
     display: none;
+  }
+
+  #top-center-actions {
+    gap: 4px;
+  }
+
+  #top-center-actions button {
+    width: 44px;
+    height: 44px;
+  }
+
+  #global-loading-status {
+    top: 60px;
+    width: calc(100vw - 32px);
+    min-height: 20px;
+    justify-content: center;
+    gap: 6px;
+    padding: 2px 8px;
+    font-size: 7px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  #global-loading-label,
+  #global-loading-detail {
+    flex: 0 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  #global-loading-detail {
+    max-width: none;
+    letter-spacing: 1px;
+  }
+
+  #left-panel-stack {
+    top: 84px;
+  }
+
+  /* The coordinate readouts overlap each other and the required map
+     attribution on phone widths; keep them on wider screens. */
+  #intel-hud .hud-bottom-left,
+  #intel-hud .hud-bottom-right,
+  #intel-hud .hud-bottom-bar {
+    display: none !important;
   }
 }
